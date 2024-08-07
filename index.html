@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook P5 M03 Radio Comms</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            if (selectedTime === '45') {
+                document.getElementById('activity-4').style.display = 'none';
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-4').style.display = 'none';
+                document.getElementById('activity-7').style.display = 'none';
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook P5 M03 Radio Comms</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+    <!-- Actividad 1 (4 pasos) -->
+    <div id="activity-1" class="activity">
+        <div class="banner" onclick="toggleContent('saludo')">
+            <div class="title">
+                <span>📚 Actividad 1: Saludo y Ritual Gnius Club (4 pasos)</span>
+                <span>⏰ Tiempo: 2.5 minutos</span>
+            </div>
+            <div class="subtitle">Dar la bienvenida y preparar el ambiente</div>
+            <div class="summary">Dar la bienvenida a los estudiantes y preparar el ambiente para la lección.</div>
+        </div>
+        <div id="saludo" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1 (0.5 minutos): Proyectar Diapositiva 1 "Gnius Club"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">¡Buenos días, jóvenes ingenieros! Hoy tenemos una misión emocionante. Vamos a explorar cómo los microcontroladores pueden comunicarse entre sí usando radio. ¿Están listos?</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2 (1.0 minutos): Proyectar Diapositiva 2 "¿Cómo están?" Y aprovecha para escanear quiénes pueden ser tus aliados el día de hoy.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Antes de pasar a nuestro agradecimiento me gustaría saber cómo están. Adopten la postura de acuerdo a cómo se sienten. Si están aburridos, crucen los brazos. Si están emocionados por iniciar la misión, levanten el puño.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3 (0.5 minutos): Proyectar Diapositiva 3 y guiar a los estudiantes para el ritual "Gracias por Asistir"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Vamos a juntar nuestras manos en agradecimiento por lo que vamos aprender hoy ¡Gracias por Asistir!</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 4 (0.5 minutos): Proyectar Diapositiva 4 "Objetivos de la Misión"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">El día de hoy tenemos 3 objetivos para nuestra misión. Vamos a conocer las funciones de radio en los microcontroladores, descubrir cómo configurar la comunicación por radio y diseñar un sistema de comunicación entre dos microcontroladores.</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 2 (2 pasos) -->
+    <div id="activity-2" class="activity">
+        <div class="banner" onclick="toggleContent('innovacion')">
+            <div class="title">
+                <span>📚 Actividad 2: Innovación del Día (2 pasos)</span>
+                <span>⏰ Tiempo: 3 minutos</span>
+            </div>
+            <div class="subtitle">Mostrar un video sobre la innovación del día</div>
+            <div class="summary">Desarrollar el pensamiento crítico a través de preguntas y reflexión.</div>
+        </div>
+        <div id="innovacion" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1 (0.5 minutos): Proyectar Diapositiva 5 "Innovación del Día"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Hoy vamos a trabajar con señales de radio frecuencia que es la base del Internet de las Cosas. Y la innovación de hoy tiene que ver con eso, vamos a ver un video.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2 (2.5 minutos): Proyectar Diapositiva 6 y reproducir el video de la innovación del día. Al terminar el video desarrolla el pensamiento crítico haciendo preguntas y permitiendo que los Genios compartan sus reflexiones.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">¿De qué otra forma se podría utilizar esta tecnología? ¿Cuál creen que sea la kriptonita de esta innovación?</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 3 (9 pasos) -->
+    <div id="activity-3" class="activity">
+        <div class="banner" onclick="toggleContent('brain_gym')">
+            <div class="title">
+                <span>📚 Actividad 3: Brain Gym (9 pasos)</span>
+                <span>⏰ Tiempo: 10.5 minutos</span>
+            </div>
+            <div class="subtitle">Ejercitar el cerebro y preparar para el desafío</div>
+            <div class="summary">Adquirir conocimientos nuevos y preparar a los estudiantes para el desafío del día.</div>
+        </div>
+        <div id="brain_gym" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1 (0.5 minutos): Proyectar Diapositiva 7 "Brain Gym"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Antes de realizar el desafío del día, vamos a ejercitar nuestros cerebros adquiriendo un conocimiento nuevo. Así que pongan atención porque dentro de lo que voy a explicar hay un Easter Egg. Al final de la clase voy a lanzar una pregunta y quien la responda, ganará un mon-e.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2 (0.5 minutos): Proyectar Diapositiva 8 "Recursos Brain Gym" y dales indicaciones.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Ahora si, abran su navegador y vayan al sitio que aparece en pantalla para acceder a los recursos de la clase.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3 (1 minuto): Proyectar Diapositiva 9 "Radio Set Group" y explicar la función. Interactúa con los Genios cuando lances preguntas. Cuida tu tiempo para terminar la misión.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">¿Alquien sabe por qué cada uno de nosotros tiene un número de celular diferente? ¡Exacto! Si no tuviera un número específico ¿Cómo sabría las personas a dónde marcarme? o en palabras de Genios Digitales "Qué canal usar." Para que dos microbits puedan hablarse por radio necesitan estar en el mismo canal y ese bloque lo ponemos en "On Start" para que quede definido el canal en cuanto inicia mi programa.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 4 (1 minuto): Proyectar Diapositiva 10 "Radio Set Group" y dirigir a los Genios para que usen la función.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Van a tomar el bloque y lo van a poner dentro de "On start" y y van a mover el slider que les deja escoger el canal. Ya que lo hayan hecho díganme ¿hasta cuántos canales tenemos para escoger?</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 5 (1 minuto): Proyectar Diapositiva 11 "Radio Send" y explicar la función.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Ya que nuestros microbits están sintonizados en el mismo canal, ahora es momento de empezar hablar y para ello podemos mandar 3 cosas diferentes. Números, textos o el valor de una variable. Tal como están en la pantalla explicados: "RADIO SEND NUMBER" para los números, "REDIO SEND STRING" para textos y "RADIO SEND VALUE" para mandar un texto y una variable al mismo tiempo.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 6 (3 minutos): Proyectar Diapositiva 12 "Radio Send" y dirigir a los Genios para que usen la función "RADIO SEND NUMBER", "RADIO SEND STRING" y "RADIO SEND VALUE".</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Ahora vamos a explorar la manera en que se envían los mensajes de un microbit a otro. Escogan una forma de activar el envío del mensaje. En mi caso, como pueden ver en el ejemplo yo utilicé el botón "A" para enviar un número, y el número que elegí es el 1935 que fue la fecha cuando se fundó la compañía HP. Y elegí el botón "B" para mandar un texto, el texto que estoy enviando es una señal de auxilio, que son las letras S.O.S. ¿Alguien sabe por qué cuando se pide Auxilio se escriben o envían esas letras? Investiguen rápido y alguien deme la respuesta. ¡Correcto! Las letras S.O.S. son la abreviatura de Save Our Souls, o Salven nuestras almas. Y ya por último elegí que cuando presione por largo tiempo el logotipo de Microbit, utilice la función "RADIO SEND VALUE" para mandar al mismo tiempo un texto y un número.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 7 (2 minutos): Proyectar Diapositiva 13 "Radio Received" y explicar la función.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Para que se de la comunicación entre dos microbits, ya que uno habló ¿Qué tiene que hacer el otro? ¡Exacto! Escuchar. Para que nuestro microbit escuche vamos a utilizar estos tres bloques "on radio receive recivedNumber" para los números, "on radio received receivedString" para los textos y "on radio received name value" para las variables.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 8 (3 minutos): Proyectar Diapositiva 14 "Radio Received" y dirigir a los Genios para que usen la función "RADIO RECEIVED NUMBER", "RADIO RECEIVED STRING" y "RADIO RECEIVED VALUE". Después de la explicación abrir el archivo de MAKECODE y prueba el código.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Ahora vamos a escuchar lo que mandó el microbit. Para recibir el número vamos a utilizar el bloque ON RADIO RECEIVED NUMBER y adentro le vamos a poner que nos muestre el número recivido utiizando el bloque SHOW NUMBER y vamos arrastrar la variable RECEIVED NUMBER al campo de show number. Para recibir el texto vamos a utilizar el bloque ON RADIO RECEIVED STRING y adentro le vamos a poner que nos muestre el texto recibido utiizando el bloque SHOW STRING y vamos arrastrar la variable RECEIVED STRING al campo de SHow string. Y para recibir un texto y un número vamos a utilizar el bloque ON RADIO RECEIVE VALUE y adentro le vamos a poner primero un bloque de SHOW NUMBRE y abajo un bloque de SHOW STRING, ya saben qué hacer con las variables definidas. Ahora si, vamos a probar si lo que hicieron funcionó Yo voy a probar el mío. Prueben el de ustedes y vean si funciona.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 9 (0.5 minutos): Proyectar Diapositiva 15 "Avance Objetivos" y felicita a los Genios</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">¡Muy bien Genios! Ya completamos las primeras dos partes de la misión. Van que vuelan para recibir su mon-e hoy.</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 4 (3 pasos) -->
+    <div id="activity-4" class="activity">
+        <div class="banner" onclick="toggleContent('state_change')">
+            <div class="title">
+                <span>📚 Actividad 4: State Change (3 pasos)</span>
+                <span>⏰ Tiempo: 3 minutos</span>
+            </div>
+            <div class="subtitle">Activar el cerebro para el reto del día</div>
+            <div class="summary">Utilizar técnicas de respiración para mejorar el enfoque.</div>
+        </div>
+        <div id="state_change" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1 (0.5 minutos): Proyectar Diapositiva 16 "State Change"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Antes de ir a nuestro reto del día vamos a activar nuestro cerebro para que pueda dar lo mejor de sí.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2 (1 minuto): Proyectar Diapositiva 17 y guiar a los Genios con la activación.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">OK Genios, esta técnica de respiración que vamos a utilizar sirve para poder enfocarnos. La pueden utilizar para cuando requieren de toda su atención como cuando van a disparar un penal en el fut, o cuando van a entrar a un examen. Siempre que se quieran concentrar pueden acudir a esta respiración. Vamos hacer tres respiraciones cuando yo dé la señal. Van a tomar aire por la nariz y a respirar profundamente todos sus pulmones en tres tiempos y cuando lo suelten van a hacer el sonido OHM con la boca cerrada. Voy a hacer yo una para enseñarles y luego ustedes (haces respiración OHM). Ahora ustedes a la cuenta de tres respiramos. Una, dos, tres. Reeespirooo en uno, dos, tres y suelto OHM. ¡Muy bien! Ahora vamos a hacerlo más interesante.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3 (1.5 minutos): Proyectar Diapositiva 18 y seguir guiando a los Genios.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Ahora lo vamos a hacer 3 veces, pero vamos a convertir su cerebro en un sintetizador. Vean la imagen en pantalla. Van a tapar sus ojos con el dedo índice y medio y van a tapar sus oídos con los dedos gordos. Van a hacer el mismo ejercicio anterior tres veces. Respiro profundamente en 3 tiempos y suelto en OHM con boca, ojos y oídos tapados. Cuando terminen de hacer sus tres respiraciones se sientan. ¿Listos?</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 5 (3 pasos) -->
+    <div id="activity-5" class="activity">
+        <div class="banner" onclick="toggleContent('team_gnius')">
+            <div class="title">
+                <span>📚 Actividad 5: Team Gnius (3 pasos)</span>
+                <span>⏰ Tiempo: 3 minutos</span>
+            </div>
+            <div class="subtitle">Formar equipos y preparar materiales</div>
+            <div class="summary">Dividir a los estudiantes en equipos y entregar materiales para trabajar.</div>
+        </div>
+        <div id="team_gnius" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1 (0.5 minutos): Proyectar Diapositiva 19 "Team Gnius"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">El reto que nos toca estos días se va hacer en equipos de 4. Así que les voy a dar 30 segundos para que decidan con quién van a trabajar.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2 (0.5 minutos): Proyectar Diapositiva 20 "Cronómetro de 30 segundos" o utilizar tu semáforo de tiempo.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3 (2 minutos): Proyectar Diapositiva 21 "Cronómetro de 30 segundos" y entregar 4 Magic Tablet por representante</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Ahora elijan un representante de cada equipo para que venga por sus Magic Tablets que es en donde van a trabajar sus ideas.</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 6 (13 pasos) -->
+    <div id="activity-6" class="activity">
+        <div class="banner" onclick="toggleContent('challenge')">
+            <div class="title">
+                <span>📚 Actividad 6: Challenge (13 pasos)</span>
+                <span>⏰ Tiempo: 24 minutos</span>
+            </div>
+            <div class="subtitle">Desafío de Radio</div>
+            <div class="summary">Utilizar la función de radio para crear un juego.</div>
+        </div>
+        <div id="challenge" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1 (0.5 minutos): Proyectar Diapositiva 22 "Challenge"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Ahora si, vamos a ver de qué se trata el desafío de hoy. Primero les voy a explicar nuestro siguiente desafío y luego la manera en la que vamos a colaborar.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2 (5 minutos): Proyectar Diapositiva 23 y explicar el desafío.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Muy bien Genios, el desafío de hoy consiste en que utilicen la función de Radio para crear un juego. Pueden inventar su propio juego o tomar uno que ya conocen para hacerlo digital. Aquí pueden ver unos ejemplos:<br>
+                Piedra, Papel o Tijeras: Diseñen un juego de Piedra, Papel o Tijeras donde cada jugador elige su jugada presionando un botón. El microbit enviará y recibirá la elección del otro jugador para determinar el ganador.<br>
+                Duelo de Vaqueros: Creen un juego de duelo de vaqueros donde compiten para ver quién desenfunda más rápido. Usen la función de radio para enviar una señal de "¡fuego!" y medir el tiempo de reacción de cada jugador al activar el acelerómetro y presionar un botón para disparar.<br>
+                Simón Dice: Diseñen un juego de "Simón Dice" entre dos microbits. Un microbit enviará una secuencia de luces y sonidos que el otro debe replicar. Los jugadores se turnan para enviar y recibir secuencias, aumentando la dificultad con cada ronda.<br>
+                Mensajes en Código Morse: Programen los microbits para enviar y recibir mensajes en código Morse. Un microbit envía un mensaje en código Morse que el otro debe decodificar y mostrar en la pantalla.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3 (0.5 minutos): Proyectar Diapositiva 24 "Think-Pair-Share" y explicar la forma de colaborar.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Vamos a trabajar utilizando la técnica de Think-Pair-Share. La dinámica será la siguiente: 1. Think: Cada uno tendrá 2 minutos para pensar individualmente sobre el juego que quiere hacer y escribir la solución al reto en sus cuadernos. ¿Listos?</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 4 (2 minutos): Proyectar Diapositiva 25 Cronómetro de 2 minutos o utilizar tu semáforo de tiempo y dejar que los Genios trabajen.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 5 (0.5 minutos): Proyectar Diapositiva 26 "Think-Pair-Share" y explicar la forma de colaborar.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Muy bien, ahora intercambien sus notas con su compañero con el que están trabajando. Solo lean lo que su compañero propuso. No pueden preguntarle nada. Les voy a dar un minuto para leer la propuesta. Intercambien cuadernos ahora... ¿Listos?</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 6 (1 minuto): Proyectar Diapositiva 27 Cronómetro de 1 minuto o utilizar tu semáforo de tiempo y dejar que los Genios trabajen.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 7 (0.5 minutos): Proyectar Diapositiva 28 "Think-Pair-Share" y explicar la forma de colaborar.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Ahora tienen un minuto para comentar entre ustedes decidir cuál de las soluciones van a trabajar. ¿Listos?</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 8 (1 minuto): Proyectar Diapositiva 29 Cronómetro de 1 minuto o utilizar tu semáforo de tiempo y dejar que los Genios trabajen.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 9 (0.5 minutos): Proyectar Diapositiva 30 y poner música para que desarrollen el reto.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Ahora si, tienen10 minutos para diseñar su juego en su libreta. Diseñen el programa en pseudocódigo o con diagramas para explicar cómo va a funcionar. Esa va a ser su guía para programar su juego en la próxima misión. Les sugiero que dividan el programa en dos partes y trabajen en parejas para diseñar su juego.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 10 (10 minutos): Proyectar Diapositiva 31 Cronómetro de 10 minutos o utilizar tu semáforo de tiempo y dejar que los Genios trabajen.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 11 (0.5 minutos): Proyectar Diapositiva 33 "Game Over"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">¡Se acabó! Dejen de programar y tomen fotos de sus notas para que la próxima clase las puedan utilizar.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 12 (0.5 minutos): Proyectar Diapositiva 14 "Avance Objetivos" y felicita a los Genios</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">¡Woooow! ¡Lo lograron Genios! Cumplieron con los objetivos de la misión así que les toca llevar mon-e.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 13 (0.5 minutos): Proyectar Diapositiva 34 "You've got mon-e" y celebra con los genios</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 7 (2 pasos) -->
+    <div id="activity-7" class="activity">
+        <div class="banner" onclick="toggleContent('easter_egg')">
+            <div class="title">
+                <span>📚 Actividad 7: Easter Egg (2 pasos)</span>
+                <span>⏰ Tiempo: 3 minutos</span>
+            </div>
+            <div class="subtitle">Regalo de Mon-e</div>
+            <div class="summary">Regalar Mon-e a quienes pusieron atención durante el training.</div>
+        </div>
+        <div id="easter_egg" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1 (1 minuto): Proyectar la diapositiva 35 "Easter Egg" y dar las instrucciones.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">¡Llegó el momento de regalar mon-e! vamos a ver quién puso atención en el training. La siguiente diapositiva tiene una pregunta de algo que dije en el training. Voy a darle mon-e a las tres primeras personas que me den la respuesta correcta. La dinámica será así. En cuanto pase a la siguiente diapositiva, lee la pregunta y si sabes la respuesta levanta la mano. No des la respuesta, solo levanta la mano. Si das la respuesta pierdes. Si alguien da la respuesta en voz alta pierden todos. Solo levanta la mano.</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2 (2 minutos): Proyectar la diapositiva 36 "Pregunta Easter Egg" y en cuanto levante la mano algún genio reconócela con diciendo en voz alta el número que le corresponde. Pide a cada uno que vaya y te diga la respuesta al oído para que no las escuchen los demás. Después di la respuesta en voz alta.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Uno, dos, tres. Uno, ven y dime la respuesta al oído. Ahora tu dos. Ahora el tres. La respuesta correcta es "Save our Souls" o "Salven Nuestras Almas". Muy bien a los ganadores, tienen Mon-e.</div>
+            </div>
+        </div>
+    </div>
+    <!-- Actividad 8 (1 paso) -->
+    <div id="activity-8" class="activity">
+        <div class="banner" onclick="toggleContent('honor_dojo')">
+            <div class="title">
+                <span>📚 Actividad 8: Honor de Dojo (1 paso)</span>
+                <span>⏰ Tiempo: 1 minuto</span>
+            </div>
+            <div class="subtitle">Ceremonia de Honor</div>
+            <div class="summary">Reconocer el esfuerzo de los equipos y recoger las magic tablets.</div>
+        </div>
+        <div id="honor_dojo" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1 (1 minuto): Proyectar Diapositiva 37 y reproducir la animación de honor de dojo.</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Cada representante de equipo recoja las magic tablets de sus equipos y pase al frente a entregarlas.</div>
+            </div>
+        </div>
+    </div>
+</div> <!-- Cierre del container -->
+
+<!-- Scripts adicionales si es necesario -->
+<script>
+    // Agregar scripts adicionales aquí si es necesario
+</script>
+
+</body>
+</html>
